@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, eventRegistrations, InsertEventRegistration } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +89,24 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+export async function createEventRegistration(registration: InsertEventRegistration) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  const result = await db.insert(eventRegistrations).values(registration);
+  return result;
+}
+
+export async function getEventRegistrations(eventTitle?: string) {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  if (eventTitle) {
+    return await db.select().from(eventRegistrations).where(eq(eventRegistrations.eventTitle, eventTitle));
+  }
+  return await db.select().from(eventRegistrations);
+}
