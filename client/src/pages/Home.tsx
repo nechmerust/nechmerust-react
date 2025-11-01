@@ -1,106 +1,161 @@
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
+
 export default function Home() {
+  const { language } = useLanguage();
+
+  const features = [
+    {
+      icon: '❤️',
+      cs: 'Péče o zvířata',
+      en: 'Animal Care',
+      csDesc: 'Poskytujeme bezpečný domov a péči pro zvířata',
+      enDesc: 'We provide a safe home and care for animals'
+    },
+    {
+      icon: '🌱',
+      cs: 'Soběstačnost',
+      en: 'Self-sufficiency',
+      csDesc: 'Aktivní uživatelé o udržitelný a soběstačný způsob života',
+      enDesc: 'Active users for a sustainable way of life'
+    },
+    {
+      icon: '👥',
+      cs: 'Komunita',
+      en: 'Community',
+      csDesc: 'Budujeme silnou komunitu lidí s podobnými hodnotami',
+      enDesc: 'Building a strong community of like-minded people'
+    },
+    {
+      icon: '🌍',
+      cs: 'Soulad s přírodou',
+      en: 'Harmony with Nature',
+      csDesc: 'Láskyplné propojení s přírodou a celou živou cestou',
+      enDesc: 'Loving connection with nature and the entire living world'
+    },
+  ];
+
+  const donations = [
+    { method: 'Virtuální adopce', en: 'Virtual Adoption', link: '/virtual-adoption' },
+    { method: 'Přispět kryptem', en: 'Donate with Crypto', link: '/crypto-donation' },
+    { method: 'Nákup na Nakmnas.cz', en: 'Shop on Nakmnas.cz', link: '#' },
+    { method: 'Příspěvek na darujme.cz', en: 'Donate on Darujme.cz', link: '#' },
+  ];
+
   return (
-    <div className="pt-16">
+    <div className="pt-24">
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center bg-gradient-to-br from-green-50 to-white">
-        <div className="max-w-6xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-green-900 mb-6">
-              Tvoříme prostor pro růst duše, srdce i přírody
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-green-100 py-12">
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+          <div className="fade-in">
+            <h1 className="text-5xl md:text-6xl font-bold text-green-900 mb-6 leading-tight">
+              {language === 'cs' 
+                ? 'Tvořme prostor pro růst duše, srdce i přírody'
+                : 'Create space for the growth of soul, heart and nature'}
             </h1>
-            <p className="text-lg text-gray-700 mb-8">
-              Nech Mě Růst z.s. je nezisková organizace s vizí tvorby rodového statku, kde žijeme v harmonii s přírodou, zvířaty i sebou navzájem
+            <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+              {language === 'cs'
+                ? 'Nech Mě Růst z.s. je nezisková organizace s vizí tvorby rodového statku, kde žijeme v harmonii s přírodou, zvířaty i sebou navzájem'
+                : 'Nech Me Rust z.s. is a non-profit organization with a vision of creating a family farm where we live in harmony with nature, animals and each other'}
             </p>
             <div className="flex gap-4">
-              <a href="/about" className="px-6 py-3 bg-green-700 text-white rounded-lg hover:bg-green-800 transition">
-                Více o nás
+              <a href="/about" className="px-6 py-3 bg-green-700 text-white rounded-lg hover:bg-green-800 transition font-medium">
+                {language === 'cs' ? 'Více o nás' : 'Learn More'}
               </a>
-              <a href="/events" className="px-6 py-3 border-2 border-green-700 text-green-700 rounded-lg hover:bg-green-50 transition">
-                Akce a události
+              <a href="/animals" className="px-6 py-3 border-2 border-green-700 text-green-700 rounded-lg hover:bg-green-50 transition font-medium">
+                {language === 'cs' ? 'Poznat zvířata' : 'Meet Animals'}
               </a>
             </div>
           </div>
-          <div className="flex justify-center">
-            <div className="w-64 h-64 bg-green-200 rounded-full flex items-center justify-center">
-              <img src="/assets/logo-circle.png" alt="Logo" className="w-full h-full object-cover rounded-full" />
+          <div className="hidden md:block">
+            <div className="w-full h-96 bg-gradient-to-br from-green-200 to-green-300 rounded-2xl flex items-center justify-center shadow-xl">
+              <div className="text-8xl">🌿</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-green-900 mb-12">O projektu</h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-4 text-gray-700">
-              <p>
-                Na Louce žijí zvířata, která jsme přijali do péče, a která u nás nacházejí bezpečný domov, dostatek krmiva a čisté, teplé místo k odpočinku. Každé zvíře má svůj příběh a my se snažíme zajistit jim co nejlepší život.
-              </p>
-              <p>
-                Věříme, že způsob, jakým žijeme a jak zacházíme se světem kolem nás, má hluboký dopad na naše blaho i na zdraví celé planety. Proto se snažíme žít vědomě, s úctou k tradičním hodnotám, ale i s otevřeností k novým, udržitelným přístupům.
-              </p>
-              <p>
-                Naším posláním je nejen vytvářet takové prostředí pro nás samotné, ale také inspirovat ostatní, sdílet naše zkušenosti a znalosti, a tím přispívat k širší společenské transformaci směrem k harmoničtějšímu vztahu s naším prostředím.
-              </p>
+          <h2 className="text-4xl font-bold text-green-900 mb-4 text-center">
+            {language === 'cs' ? 'O projektu' : 'About the Project'}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 items-center mt-12">
+            <div className="hidden md:block">
+              <div className="w-full h-96 bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl"></div>
             </div>
-            <div className="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
-              <img src="/assets/about-image.webp" alt="O nás" className="w-full h-full object-cover rounded-lg" />
+            <div>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                {language === 'cs'
+                  ? 'Na Louce žijí zvířata, která jsme přijali do péče, která u nás nachází bezpečný domov, dostátek jídla i odpočinku. Každé zvířě má svůj příběh a my se snažíme mu dát to nejlepší.'
+                  : 'On our Meadow live animals that we have taken into our care, who find a safe home with us, plenty of food and rest. Each animal has its own story and we try to give them the best.'}
+              </p>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                {language === 'cs'
+                  ? 'Věříme, že je možné žít v souladu s přírodou, s respektem k živým bytostem a v harmonii s ostatními lidmi. Naše cesta je cestou lásky, porozumění a transformace.'
+                  : 'We believe it is possible to live in harmony with nature, with respect for living beings and in harmony with other people. Our path is a path of love, understanding and transformation.'}
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-20 bg-gray-50">
+      {/* Features Section */}
+      <section className="py-16 bg-green-50">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-green-900 mb-12">Naše hodnoty</h2>
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { icon: '❤️', title: 'Péče o zvířata', desc: 'Poskytování bezpečného a láskyplného domova pro zvířata' },
-              { icon: '🌱', title: 'Soběstačnost', desc: 'Aktivní usilování o udržitelný a soběstačný způsob života' },
-              { icon: '👥', title: 'Komunita', desc: 'Budování silné a podporující komunity kolem naší Louky' },
-              { icon: '🍃', title: 'Soulad s přírodou', desc: 'Láskyplné propojení s přírodou a cesta života v jejím rytmu' },
-            ].map((value, i) => (
-              <div key={i} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-                <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-lg font-bold text-green-900 mb-2">{value.title}</h3>
-                <p className="text-gray-600 text-sm">{value.desc}</p>
+          <h2 className="text-4xl font-bold text-green-900 mb-12 text-center">
+            {language === 'cs' ? 'Naše hodnoty' : 'Our Values'}
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-lg shadow-md hover-scale">
+                <div className="text-5xl mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-bold text-green-900 mb-2">
+                  {language === 'cs' ? feature.cs : feature.en}
+                </h3>
+                <p className="text-gray-700 text-sm">
+                  {language === 'cs' ? feature.csDesc : feature.enDesc}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Support Section */}
-      <section className="py-20 bg-white">
+      {/* How to Support Section */}
+      <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-green-900 mb-12">Jak se zapojit?</h2>
-          <p className="text-center text-gray-700 mb-8 max-w-2xl mx-auto">
-            Existuje několik způsobů, jak nás můžete podpořit. Provoz Louky a péče o zvířata vyžaduje nemalé úsilí a finanční prostředky. Číslo našeho transparentního účtu je:
+          <h2 className="text-4xl font-bold text-green-900 mb-4 text-center">
+            {language === 'cs' ? 'Jak se zapojit?' : 'How to Get Involved?'}
+          </h2>
+          <p className="text-center text-gray-700 mb-12 max-w-2xl mx-auto">
+            {language === 'cs'
+              ? 'Existuje několik způsobů, jak nám můžete pomoci. Prosím, zvolte si ten, který vám vyhovuje.'
+              : 'There are several ways you can help us. Please choose the one that works best for you.'}
           </p>
-          <div className="bg-green-50 p-8 rounded-lg mb-8 text-center">
-            <p className="text-lg font-mono font-bold text-green-900">CZ49 2010 2002 6400 0000 5872</p>
-            <p className="text-sm text-gray-600 mt-2">SWIFT: FIOBCZPP</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { label: 'Virtuální adopce', href: '/virtual-adoption' },
-              { label: 'Přispět kryptem', href: '/crypto-donation' },
-              { label: 'Přispět na darujme.cz', href: 'https://www.darujme.cz/projekt/1208852', external: true },
-              { label: 'Nákup na nakrmnas.cz', href: 'https://www.nakrmnas.cz/nech-me-rust', external: true },
-              { label: 'Naplň misku zdarma', href: 'https://clickandfeed.cz', external: true },
-            ].map((btn, i) => (
+          
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            {donations.map((item, idx) => (
               <a
-                key={i}
-                href={btn.href}
-                target={btn.external ? '_blank' : undefined}
-                rel={btn.external ? 'noopener noreferrer' : undefined}
-                className="px-4 py-3 bg-green-700 text-white rounded-lg hover:bg-green-800 transition text-center"
+                key={idx}
+                href={item.link}
+                className="p-6 bg-green-50 border-2 border-green-200 rounded-lg hover:border-green-700 hover:bg-green-100 transition text-center"
               >
-                {btn.label}
+                <h3 className="text-xl font-bold text-green-900">
+                  {language === 'cs' ? item.method : item.en}
+                </h3>
               </a>
             ))}
+          </div>
+
+          <div className="bg-green-100 p-8 rounded-lg text-center">
+            <p className="text-gray-700 mb-4">
+              {language === 'cs'
+                ? 'Číslo účtu: CZ49 2010 2002 6400 0000 5872'
+                : 'Account number: CZ49 2010 2002 6400 0000 5872'}
+            </p>
+            <p className="text-sm text-gray-600">SWIFT: FIOBCZPP</p>
           </div>
         </div>
       </section>

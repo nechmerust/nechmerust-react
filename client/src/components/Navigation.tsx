@@ -2,17 +2,16 @@ import { useState } from 'react';
 import { useLocation } from 'wouter';
 import { Menu, X } from 'lucide-react';
 import { APP_LOGO, APP_TITLE } from '@/const';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setLanguage] = useState(localStorage.getItem('language') || 'cs');
+  const { language, setLanguage } = useLanguage();
   const [location] = useLocation();
 
   const toggleLanguage = () => {
     const newLang = language === 'cs' ? 'en' : 'cs';
     setLanguage(newLang);
-    localStorage.setItem('language', newLang);
-    document.documentElement.lang = newLang;
   };
 
   const navItems = [
