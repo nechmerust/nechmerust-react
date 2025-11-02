@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, Router } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -16,7 +16,7 @@ import Contact from "./pages/Contact";
 import CryptoDonation from "./pages/CryptoDonation";
 import Privacy from "./pages/Privacy";
 
-function Router() {
+function AppRouter() {
   // make sure to consider if you need authentication for certain routes
   return (
     <>
@@ -54,7 +54,9 @@ function App() {
         >
           <TooltipProvider>
             <Toaster />
-            <Router />
+            <Router base="/nechmerust-react/">
+              <AppRouter />
+            </Router>
           </TooltipProvider>
         </ThemeProvider>
       </LanguageProvider>
