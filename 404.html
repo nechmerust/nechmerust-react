@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nech mě růst</title>
+    <script>
+        // GitHub Pages SPA routing fix
+        // Redirect 404s to the index.html with the correct base path
+        const pathSegments = window.location.pathname.split('/').filter(Boolean);
+        const baseIndex = pathSegments.indexOf('nechmerust-react');
+        
+        if (baseIndex !== -1) {
+            // We're in the nechmerust-react subdirectory
+            const pathAfterBase = '/' + pathSegments.slice(baseIndex + 1).join('/');
+            const newPath = '/nechmerust-react/' + pathAfterBase.substring(1);
+            window.location.replace(newPath);
+        } else {
+            // Fallback to root
+            window.location.replace('/nechmerust-react/');
+        }
+    </script>
+</head>
+<body>
+    <p>Přesměrování...</p>
+</body>
+</html>
